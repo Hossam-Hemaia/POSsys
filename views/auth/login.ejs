@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <title><%=pageTitle%></title>
+  </head>
+  <body>
+    <main>
+      <section class="login-section">
+        <div class="login-dialogue">
+          <span class="icon-container_nav">
+            <a href="/pos/system"
+              ><img src="/img/icons/user.png" alt="user"
+            /></a>
+          </span>
+          <h2>تسجيل الدخول</h2>
+          <form action="/user/login">
+            <input
+              type="text"
+              name="username"
+              placeholder="اسم المستخدم"
+              class="regular-input"
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="كلمة المرور"
+              class="regular-input"
+            />
+            <button type="submit" class="action-btn">دخول</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

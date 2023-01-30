@@ -1,0 +1,324 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: #e4f1f5;
+    margin-top: 5rem;
+}
+
+nav {
+    display: flex;
+    height: 5rem;
+    background-color: #c9e5ec;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+}
+.nav-main{
+    width: 25%;
+    height: inherit;
+    padding: 5px;
+}
+.nav-action{
+    width: 50%;
+    height: inherit;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.nav-admin{
+    width: 25%;
+    height: inherit;
+    padding: 5px;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.item-select{
+    width: 55%;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 10px;
+}
+.categories{
+    width: 35%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.cat-name_btn{
+    margin: 5px;
+    width: 90%;
+    height: 50px;
+    color: #000000;
+    background-color: #dfe8f5;
+    border-radius: 10px;
+    border-style: none;
+    font-size: large;
+}
+.cat-name_btn:hover {
+    background-color: #50a7ee;
+    color: #ffffff;
+}
+.items{
+    width: 65%;
+    background-color: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap
+}
+.item-name_container{
+    margin: 10px;
+    background-color: white;
+    width: 28%;
+    height: 8rem;
+    border-radius: 5px;
+    display: block;
+    position: relative;
+}
+.item-price{
+    display: block;
+    width: 50%;
+    background-color: #548de1;
+    color: white;
+    height: 24px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 4px;
+    position: absolute;
+    z-index: 1;
+}
+.item-btn{
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    border-radius: inherit;
+    font-size: large;
+    background-color: white;
+}
+.item-btn:hover{
+    cursor: pointer;
+    background-color: #3fd1e4;
+    border: 1px solid blue;
+}
+
+.order-create {
+    width: 45%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+.bill-header{
+    width: 100%;
+    border-bottom: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px
+}
+.order-create form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.bill-items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.bill-item_container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    margin: 2px;
+    border-bottom: 1px solid lightgray;
+}
+.bill-input {
+    border-style: none !important;
+    border-width: 0px !important;
+    border-color: none !important;
+    width: 25%;
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+    color: rgb(83, 80, 80);
+}
+.bill-input:focus{
+    border-style: none !important;
+    border-width: 0px !important;
+    border-color: none !important;
+    outline: none;
+}
+.bill-item_container textarea{
+    resize: none;
+}
+
+.icon-container{
+    margin-left: 12px;
+    cursor: pointer;
+}
+.icon-container img {
+    display: block;
+    width: 23px;
+    height: 23px;
+}
+
+.bill-client-input_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px;
+}
+.bill-client_input{
+    margin: 5px;
+    padding-right: 10px;
+    height: 24px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    border: 1px;
+    outline: none;
+}
+
+.totals-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.input-groub{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.input-groub label{
+    font-size: small;
+}
+.input-groub input {
+    width: 8rem;
+    color: red;
+    font-size: large;
+    text-align: center;
+}
+.bill-totals_fees{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 10px
+}
+.form-btn_container{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+.create-order_btn{
+    outline: none;
+    width: 10rem;
+    height: 32px;
+    border-style: none;
+    background-color: greenyellow;
+    border-radius: 10px;
+}
+.create-order_btn:hover{
+    background-color: white;
+    border: 1px solid greenyellow;
+    color: black;
+}
+.cancel-order_btn{
+    outline: none;
+    width: 10rem;
+    height: 32px;
+    border-style: none;
+    background-color: #da0f0fce;
+    border-radius: 10px;
+    color: white;
+}
+.cancel-order_btn:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid #da0f0fce ;
+}
+.select-groub{
+    width: 100%;
+    padding-right: 10px;
+}
+.select-groub select {
+    width: 88%;
+    outline: none;
+    border-style: none;
+    height: 24px;
+}
+.icon-container_nav{
+    margin-left: 12px;
+    cursor: pointer;
+}
+.icon-container_nav img {
+    display: block;
+    width: 56px;
+    height: 56px;
+}
+.nav-admin{
+    width: 25%;
+    height: inherit;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-admin input{
+    width: 90%;
+    margin-left: 10px;
+    outline: none;
+    border: 1px;
+    height: 3rem;
+    border-radius: 5px;
+    text-align: center;
+    color: lightgray;
+}

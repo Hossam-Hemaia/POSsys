@@ -1,0 +1,228 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: #d4e2e6;
+    margin-top: 5rem;
+}
+
+.icon-container{
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+.icon-container img {
+    display: block;
+    width: 23px;
+    height: 23px;
+}
+
+.dropdown-container{
+    display: none;
+    padding-right: 10px;
+    background-color: #bddae2;
+}
+.dropdown-container_active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 5px;
+    padding: 5px
+}
+
+a {
+    text-decoration: none;
+    margin: 5px;
+    color: black;
+    width: inherit;
+    height: inherit;
+}
+
+a:hover {
+    color: #f0550d;
+}
+
+.categories{
+    display: flex;
+    margin-right: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.categories-tools{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    width: 100%;
+}
+
+.categories-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.row-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid darkorange;
+}
+
+.row-body{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    margin-top: 5px;
+    border-bottom: 1px solid darkgray;
+    padding: 5px;
+}
+
+.row-actions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.action-btn{
+    width: 9rem;
+    height: 2.5rem;
+    border-color: rgb(0 0 0 / 0%);
+    background-color: #2881f5;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.action-btn:hover{
+    background-color: #0456c0dc;
+}
+
+.cancel-btn{
+    width: 9rem;
+    height: 2.5rem;
+    border-color: rgb(0 0 0 / 0%);
+    background-color: #f55828;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.cancel-btn:hover{
+    background-color: #c02a04dc;
+}
+
+.search-box{
+    width: 15rem;
+    height: 2.5rem;
+    padding: 5px;
+    color: lightgray;
+    border-style: none;
+    border-radius: 10px;
+}
+
+.regular-input{
+    margin: 20px;
+    width: 80%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    height: 40px;
+    padding: 10px;
+}
+
+.regular-select{
+    width: 100%;
+    padding-right: 10px;
+}
+.regular-select select {
+    width: 88%;
+    outline: none;
+    border-style: none;
+    height: 40px;
+    margin: 10px
+}
+
+.modal{
+    position: fixed;
+    opacity: 0;
+    transform: translateY(-3rem);
+    transition: opacity 200ms ease-out, transform 500ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    z-index: 200;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    background: white;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+.backdrop {
+    display: none;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.2s linear;
+}
+.open {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.modal__actions{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.modal__actions h2 {
+    width: 100%;
+    text-align: center;
+}
+.modal__actions form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.form-btn_container{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
+.open-section{
+    display: block !important;
+}
