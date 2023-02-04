@@ -15,10 +15,13 @@ const userSchema = new Schema(
     password: {
       type: String,
     },
-    roleId: {
-      type: Schema.Types.ObjectId,
+    role: {
+      type: String,
       required: true,
-      ref: "role",
+    },
+    branchId: {
+      type: Schema.Types.ObjectId,
+      ref: "branch",
     },
     userStatus: {
       type: String,

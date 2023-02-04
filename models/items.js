@@ -12,9 +12,10 @@ const itemSchema = new Schema(
       type: String,
       required: true,
     },
-    unitType: {
-      type: String,
+    unitId: {
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: "unit",
     },
     itemImage: {
       type: String,
