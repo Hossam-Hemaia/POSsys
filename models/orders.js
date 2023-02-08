@@ -9,6 +9,14 @@ const orderSchema = new Schema(
       required: true,
       ref: "client",
     },
+    clientAddress: {
+      type: String,
+    },
+    branchId: {
+      type: Schema.Types.ObjectId,
+      ref: "branch",
+      required: true,
+    },
     orderDetails: [
       {
         itemId: { type: Schema.Types.ObjectId, required: true, ref: "item" },

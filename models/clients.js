@@ -19,11 +19,13 @@ const clientSchema = new Schema(
     orders: [
       {
         type: Schema.Types.ObjectId,
-        ref: "orders",
+        ref: "order",
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true, autoIndex: false }
 );
+
+clientSchema.index({ phoneNumber: 1 }, { unique: true });
 
 module.exports = mongoose.model("client", clientSchema);

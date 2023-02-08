@@ -61,7 +61,7 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(multer({ storage: fileStorage }).single("file"));
 
 app.use(process.env.api, authRouter);

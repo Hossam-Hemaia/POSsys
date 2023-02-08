@@ -45,6 +45,12 @@ router.post(
 
 router.get("/get/branches", isAuth.adminIsAuth, adminController.getAllBranches);
 
+router.get(
+  "/get/branches/list",
+  isAuth.adminIsAuth,
+  adminController.getBranches
+);
+
 router.get("/get/branch", isAuth.adminIsAuth, adminController.getBranch);
 
 router.put("/edit/branch", isAuth.adminIsAuth, adminController.putEditBranch);
@@ -72,6 +78,12 @@ router.get(
   "/get/categories",
   isAuth.adminIsAuth,
   adminController.getCategories
+);
+
+router.get(
+  "/get/all/categories",
+  isAuth.adminIsAuth,
+  adminController.getAllCategories
 );
 
 router.get("/get/category", isAuth.adminIsAuth, adminController.getCategory);
@@ -117,10 +129,27 @@ router.put("/edit/unit", isAuth.adminIsAuth, adminController.putEditUnit);
 
 router.delete("/delete/unit", isAuth.adminIsAuth, adminController.deleteUnit);
 
-//Search Endpoint
+//Search Endpoints
 router.get("/search", isAuth.adminIsAuth, adminController.getSearchResult);
 
-//Settings Endpoit
+//Settings Endpoits
 router.post("/set/tax", isAuth.adminIsAuth, adminController.postTaxRate);
 
 router.post("/set/discount", isAuth.adminIsAuth, adminController.postDiscount);
+
+router.get("/get/settings", isAuth.adminIsAuth, adminController.getSettings);
+
+//Payment Endpoints
+router.post(
+  "/create/payment",
+  isAuth.adminIsAuth,
+  adminController.postCreatePayment
+);
+
+router.get("/get/payments", isAuth.adminIsAuth, adminController.getPayments);
+
+router.delete(
+  "/delete/payment",
+  isAuth.adminIsAuth,
+  adminController.deletePayment
+);

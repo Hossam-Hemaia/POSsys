@@ -5,9 +5,12 @@ const User = require("../models/users");
 exports.postUserLogin = async (req, res, next) => {
   const { username, password } = req.body;
   try {
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({
+      username: username,
+      userStatus: "Active",
+    });
     if (!user) {
-      throw new Error("Incorrect username");
+      throw new Error("Incorrect username or username is suspended");
     }
     const doMatch = await bcryptJs.compare(password, user.password);
     if (!doMatch) {
@@ -27,6 +30,9 @@ exports.postUserLogin = async (req, res, next) => {
     res.status(200).json({
       success: true,
       token: token,
+      fullName: user.fullName,
+      role: user.role,
+      userId: user._id,
       message: "You logged in successfully!",
     });
   } catch (err) {

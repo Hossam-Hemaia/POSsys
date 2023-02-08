@@ -81,7 +81,15 @@ exports.postCreateUser = async (req, res, next) => {
   try {
     let user = await User.findOne({ fullName: fullName });
     if (user) {
-      throw new Error("this user already exist!");
+      const error = new Error("this employee name already exist");
+      error.statusCode = 422;
+      throw error;
+    }
+    user = await User.findOne({ username: username });
+    if (user) {
+      const error = new Error("this username already exist");
+      error.statusCode = 422;
+      throw error;
     }
     const hashedPassword = await bcryptJs.hash(password, 12);
     user = new User({
@@ -109,7 +117,6 @@ exports.getAllUsers = async (req, res, next) => {
   try {
     totalItems = await User.find().countDocuments();
     const users = await User.find()
-      .populate("roleId")
       .skip((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);
     res.status(200).json({
@@ -269,6 +276,21 @@ exports.getAllBranches = async (req, res, next) => {
   }
 };
 
+exports.getBranches = async (req, res, next) => {
+  try {
+    const branches = await Branch.find();
+    if (!branches) {
+      throw new Error("No branches found!");
+    }
+    res.status(200).json({
+      success: true,
+      branches: branches,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.getBranch = async (req, res, next) => {
   const branchId = req.query.branchId;
   try {
@@ -383,6 +405,21 @@ exports.getCategories = async (req, res, next) => {
   }
 };
 
+exports.getAllCategories = async (req, res, next) => {
+  try {
+    const categories = await Category.find();
+    if (!categories) {
+      throw new Error("No categories found!");
+    }
+    res.status(200).json({
+      success: true,
+      categories: categories,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.getCategory = async (req, res, next) => {
   const categoryId = req.query.categoryId;
   try {
@@ -416,7 +453,7 @@ exports.putEditCategory = async (req, res, next) => {
 };
 
 exports.deleteCategory = async (req, res, next) => {
-  const categoryId = req.body.categoryId;
+  const categoryId = req.query.categoryId;
   try {
     const deletedCategory = await Category.findByIdAndDelete(categoryId);
     if (!deletedCategory) {
@@ -544,14 +581,28 @@ exports.putEditItem = async (req, res, next) => {
   const { itemTitle, itemPrice, unitId, categoryId, itemId } = req.body;
   let image = req.file;
   try {
-    let imagePath = image
-      ? `${req.protocol}s://${req.get("host")}/${image.path}`
-      : "";
+    if (image) {
+      const imagePath = `${req.protocol}s://${req.get("host")}/${image.path}`;
+      const updatedItem = await Item.findByIdAndUpdate(itemId, {
+        itemTitle: itemTitle,
+        itemPrice: itemPrice,
+        unitId: unitId,
+        itemImage: imagePath,
+        categoryId: categoryId,
+      });
+      if (!updatedItem) {
+        const error = new Error("item update faild!");
+        error.statusCode = 422;
+        throw error;
+      }
+      return res
+        .status(201)
+        .json({ success: true, message: "Item update succeeded!" });
+    }
     const updatedItem = await Item.findByIdAndUpdate(itemId, {
       itemTitle: itemTitle,
       itemPrice: itemPrice,
       unitId: unitId,
-      itemImage: imagePath,
       categoryId: categoryId,
     });
     if (!updatedItem) {
@@ -672,6 +723,17 @@ exports.getSearchResult = async (req, res, next) => {
   const searchTerm = req.query.searchTerm;
   const searchCategory = req.query.searchCategory;
   try {
+    if (req.callcenterId) {
+      const searchResults = await Item.find({
+        itemTitle: { $regex: searchTerm, $options: "i" },
+      });
+      if (!searchResults) {
+        const error = new Error("No results found!");
+        error.statusCode = 422;
+        throw error;
+      }
+      return res.status(200).json({ success: true, results: searchResults });
+    }
     if (searchCategory === "categories") {
       const searchResults = await Category.find({
         categoryName: { $regex: searchTerm, $options: "i" },
@@ -782,6 +844,15 @@ exports.postDiscount = async (req, res, next) => {
       .json({ success: true, message: "Your settings has been saved!" });
   } catch (err) {
     err.statusCode = 422;
+    next(err);
+  }
+};
+
+exports.getSettings = async (req, res, next) => {
+  try {
+    const settings = await Setting.findOne({});
+    res.status(200).json({ success: true, settings: settings });
+  } catch (err) {
     next(err);
   }
 };
