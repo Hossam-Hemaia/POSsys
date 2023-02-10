@@ -1,6 +1,7 @@
 const bcryptJs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/users");
+const Cashbox = require("../models/cashbox");
 
 exports.postUserLogin = async (req, res, next) => {
   const { username, password } = req.body;
@@ -27,12 +28,25 @@ exports.postUserLogin = async (req, res, next) => {
       process.env.SECRET,
       { expiresIn: "24h" }
     );
+    if (user.role === "cashier") {
+      let cashbox = await Cashbox.findOne({
+        cashierId: user._id,
+        shiftStatus: "open",
+      });
+      if (!cashbox) {
+        cashbox = new Cashbox({
+          cashierId: user._id,
+        });
+        await cashbox.save();
+      }
+    }
     res.status(200).json({
       success: true,
       token: token,
       fullName: user.fullName,
       role: user.role,
       userId: user._id,
+      branchId: user.branchId,
       message: "You logged in successfully!",
     });
   } catch (err) {

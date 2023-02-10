@@ -17,12 +17,26 @@ const orderSchema = new Schema(
       ref: "branch",
       required: true,
     },
+    cashierId: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
     orderDetails: [
       {
         itemId: { type: Schema.Types.ObjectId, required: true, ref: "item" },
         quantity: { type: Number, required: true },
       },
     ],
+    paymentMethod: {
+      type: String,
+    },
+    orderStatus: {
+      type: String,
+      default: "pending",
+    },
+    orderNumber: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

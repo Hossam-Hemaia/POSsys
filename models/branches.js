@@ -20,6 +20,9 @@ const branchSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    branchSocket: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

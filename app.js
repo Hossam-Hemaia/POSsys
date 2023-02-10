@@ -10,6 +10,9 @@ const multer = require("multer");
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
 const callcenterRouter = require("./routes/callcenter");
+const cashierRouter = require("./routes/cashier");
+
+const socketController = require("./controllers/socketController");
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -62,11 +65,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/receipts", express.static(path.join(__dirname, "receipts")));
 app.use(multer({ storage: fileStorage }).single("file"));
 
 app.use(process.env.api, authRouter);
 app.use(process.env.api, adminRouter);
 app.use(process.env.api, callcenterRouter);
+app.use(process.env.api, cashierRouter);
 
 app.use((error, req, res, next) => {
   console.log(error);
@@ -85,6 +90,7 @@ mongoose
     const io = require("./socket").initIo(server);
     io.on("connection", (socket) => {
       console.log("client connected on socket: " + socket.id);
+      socketController.updateBranchSocket(socket);
     });
   })
   .catch((err) => {

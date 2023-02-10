@@ -7,7 +7,7 @@ const router = express.Router();
 router.get(
   "/categories",
   isAuth.callcenterIsAuth,
-  adminController.getCategories
+  adminController.getAllCategories
 );
 
 router.get("/items", isAuth.callcenterIsAuth, adminController.getAllItems);
@@ -27,6 +27,8 @@ router.get(
   isAuth.callcenterIsAuth,
   callcenterController.getClientInfo
 );
+
+router.get("/branches", isAuth.callcenterIsAuth, adminController.getBranches);
 
 router.get(
   "/recommend/branch",
